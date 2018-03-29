@@ -9,7 +9,7 @@ def print_two(*args):
 
 
 def print_two_again(arg1, arg2):
-    pring(f"arg1: {arg1}, arg2: {arg2}")
+    print(f"arg1: {arg1}, arg2: {arg2}")
 
 
 
