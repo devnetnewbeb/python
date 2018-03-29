@@ -1,0 +1,74 @@
+ASA1# sh run
+ASA1# sh running-config
+: Saved
+:
+ASA Version 8.4(2) <system>
+!
+hostname ASA1
+enable password 8Ry2YjIyt7RRXU24 encrypted
+mac-address auto prefix 19
+!
+interface Ethernet0
+ description ** Main Link **
+!
+interface Ethernet0.4
+ description ** INTERNET **
+ vlan 4
+!
+interface Ethernet0.5
+ description ** Management **
+ vlan 10
+!
+interface Ethernet1
+ shutdown
+!
+interface Ethernet2
+ shutdown
+!
+interface Ethernet3
+ shutdown
+!
+class default
+  limit-resource All 0
+  limit-resource ASDM 5
+  limit-resource SSH 5
+  limit-resource Telnet 5
+!
+
+ftp mode passive
+pager lines 24
+no failover
+asdm image disk0:/asdm-649-103.bin
+no asdm history enable
+arp timeout 14400
+console timeout 0
+
+admin-context admin
+context admin
+  allocate-interface Ethernet0.5
+  allocate-interface Ethernet3
+  config-url disk0:/admin.cfg
+!
+
+context Data
+  allocate-interface Ethernet0.4-Ethernet0.5
+  config-url disk0:/Data.cfg
+!
+
+prompt hostname context
+no call-home reporting anonymous
+call-home
+ profile CiscoTAC-1
+  no active
+  destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+  destination address email callhome@cisco.com
+  destination transport-method http
+  subscribe-to-alert-group diagnostic
+  subscribe-to-alert-group environment
+  subscribe-to-alert-group inventory periodic monthly
+  subscribe-to-alert-group configuration periodic monthly
+  subscribe-to-alert-group telemetry periodic daily
+crashinfo save disable
+Cryptochecksum:3a37a6bbd655a548778db20600ab6cc4
+: end
+ASA1#
