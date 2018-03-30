@@ -4,7 +4,7 @@ from device_info import ios_xe1
 from ncclient import manager
 import xmltodict
 
-netconf_filter = open("filter-ietf-interface.xml").read()
+netconf_filter = open("filter-ietf-interfaces.xml").read()
 
 if __name__ == '__main__':
     with manager.connect(host=ios_xe1["address"], port=ios_xe1["port"],
