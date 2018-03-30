@@ -1,6 +1,6 @@
 ios_xe1 = {
               "address": "10.1.1.131",
-              "port": 10000,
+              "port": 22,
               "username": "cisco",
               "password": "cisco"
            }
@@ -11,7 +11,7 @@ ios_xe1 = {
 ios_xe2 = {
 
               "address": "10.1.1.132",
-              "port": 830,
+              "port": 22,
               "username": "cisco",
               "password": "cisco"
 
