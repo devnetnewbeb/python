@@ -12,7 +12,7 @@ if __name__ == '__main__':
         password=ios_xe1["password"],
         hostkey_verify=False) as m:
 
-    netcof_reply = m.get(netconf_filter)
+    netconf_reply = m.get(netconf_filter)
 
     intf_details = xmltodict.parse(netconf_reply.xml)["rpc-reply"]["data"]
     intf_config = intf_details["interfaces"]["interface"]
